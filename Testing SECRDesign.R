@@ -39,5 +39,6 @@ ggplot()+
   geom_point(aes(y=b[1:4], x=c(1, 1.5, 2, 2.5)))+
   geom_point(aes(y=b[5:8], x=c(1, 1.5, 2, 2.5)), col='red')+
   geom_point(aes(y=b[9:12], x=c(1, 1.5, 2, 2.5)), col='blue')+
-  geom_point(aes(y=b[13:16], x=c(1, 1.5, 2, 2.5)), col='green')
+  geom_point(aes(y=b[13:16], x=c(1, 1.5, 2, 2.5)), col='green')+
+  ylim(1,6)
 
