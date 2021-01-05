@@ -1,0 +1,13 @@
+Lower Density->Faster Time
+Lower g0->Faster Time
+Lower count->Faster Time basically
+
+byscenario=FALSE-> Faster time when 1 or 2 scenarios are slow
+
+extractfn->no difference
+
+secr.fit vs standard-> no difference
+
+lower nrepl-> Faster time
+
+set ncores=max cores-1
