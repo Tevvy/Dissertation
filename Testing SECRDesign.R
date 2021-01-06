@@ -13,7 +13,7 @@ traps23<-make.circle(n=9, spacing=200, detector = 'proximity')
 traps24<-make.circle(n=9, spacing=250, detector = 'proximity')
 
 traps31<-read.traps(data=data.frame(x=rep(0,9), y=100*c(0:8)), detector = 'proximity')
-traps31<-read.traps(data=data.frame(x=rep(0,9), y=150*c(0:8)), detector = 'proximity')
+traps32<-read.traps(data=data.frame(x=rep(0,9), y=150*c(0:8)), detector = 'proximity')
 traps33<-read.traps(data=data.frame(x=rep(0,9), y=200*c(0:8)), detector = 'proximity')
 traps34<-read.traps(data=data.frame(x=rep(0,9), y=250*c(0:8)), detector = 'proximity')
 
@@ -32,13 +32,39 @@ results<-run.scenarios(scenarios = scenario1, nrepl = 100, trapset=trapset, ncor
 a<-select.stats(results, parameter = 'D', statistics=c('ERR'))
 b<-t(as.data.frame(summary(a, fields=c('rms'))$OUTPUT))
 colnames(b)<-'RMSE'
-rownames(b)<-c('11','12','13', '14','21','22','23', '24','31','32','33', '34','41','42','43', '44')
-b
+c<-select.stats(results, parameter = 'D', statistics = c('RB','RSE','COV'))
+d<-t(as.data.frame(summary(c, fields='mean')$OUTPUT))
+colnames(d)<-c('mRB', 'mRSE', 'COV')
+e<-cbind(d,b)
+rownames(e)<-NULL
+Spacing<-c(1,1.5,2,2.5)
+Layout<-c(rep('Grid', 4), rep('Circle', 4), rep('Line', 4), rep('Axis', 4))
+Layout<-as.data.frame(Layout)
+f<-cbind(Spacing, e)
+g<-cbind(Layout, f)
+g
+
+ggplot(data=g)+
+  geom_point(aes(y=RMSE, x=Spacing, col=Layout, shape=Layout))
+
+ggplot(data=g)+
+  geom_point(aes(y=COV, x=Spacing, col=Layout, shape=Layout))
+
+ggplot(data=g)+
+  geom_point(aes(y=mRB, x=Spacing, col=Layout, shape=Layout))
+
+ggplot(data=g)+
+  geom_point(aes(y=mRSE, x=Spacing, col=Layout, shape=Layout))
 
 ggplot()+
-  geom_point(aes(y=b[1:4], x=c(1, 1.5, 2, 2.5)))+
-  geom_point(aes(y=b[5:8], x=c(1, 1.5, 2, 2.5)), col='red')+
-  geom_point(aes(y=b[9:12], x=c(1, 1.5, 2, 2.5)), col='blue')+
-  geom_point(aes(y=b[13:16], x=c(1, 1.5, 2, 2.5)), col='green')+
-  ylim(1,6)
+  geom_point(data=traps11, aes(x=x, y=y), shape='plus')+
+  geom_point(data=traps12, aes(x=x+250, y=y), shape='plus')+
+  geom_point(data=traps13, aes(x=x+600, y=y), shape='plus')+
+  geom_point(data=traps14, aes(x=x+1100, y=y), shape='plus')+
+  coord_fixed(ratio=1)+
+  xlab('')+
+  ylab('')+
+  theme(axis.text.x = element_blank(), axis.text.y= element_blank(),
+        axis.ticks.x = element_blank(), axis.ticks.y= element_blank())
 
+        
