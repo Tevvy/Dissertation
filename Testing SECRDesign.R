@@ -21,6 +21,7 @@ traps41<-read.traps(data=data.frame(x=c(rep(0,5), 100*1:4), y=c(100*1:4, rep(0,5
 traps42<-read.traps(data=data.frame(x=c(rep(0,5), 150*1:4), y=c(150*1:4, rep(0,5))), detector = 'proximity')
 traps43<-read.traps(data=data.frame(x=c(rep(0,5), 200*1:4), y=c(200*1:4, rep(0,5))), detector = 'proximity')
 traps44<-read.traps(data=data.frame(x=c(rep(0,5), 250*1:4), y=c(250*1:4, rep(0,5))), detector = 'proximity')
+
 trapset<-list(traps11, traps12, traps13, traps14,
               traps21, traps22, traps23, traps24,
               traps31, traps32, traps33, traps34,
@@ -29,6 +30,7 @@ trapset<-list(traps11, traps12, traps13, traps14,
 scenario1<-make.scenarios(trapsindex=c(1:16),noccasions = 1, D=20, g0=0.5, sigma=100, detectfn = 'HN')
 
 results<-run.scenarios(scenarios = scenario1, nrepl = 100, trapset=trapset, ncores=11, byscenario = FALSE, fit=TRUE)
+
 a<-select.stats(results, parameter = 'D', statistics=c('ERR'))
 b<-t(as.data.frame(summary(a, fields=c('rms'))$OUTPUT))
 colnames(b)<-'RMSE'
@@ -67,4 +69,8 @@ ggplot()+
   theme(axis.text.x = element_blank(), axis.text.y= element_blank(),
         axis.ticks.x = element_blank(), axis.ticks.y= element_blank())
 
-        
+
+stats1<-select.stats(results, parameter = 'D', statistics = c('estimate', 'lcl','ucl'))
+par(mfrow=c(2,2))
+plot(stats1, type='CI')
+plot(stats1, type='hist', statistic='estimate')
