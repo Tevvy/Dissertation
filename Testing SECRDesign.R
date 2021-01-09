@@ -60,15 +60,47 @@ ggplot(data=g)+
 
 ggplot()+
   geom_point(data=traps11, aes(x=x, y=y), shape='plus')+
-  geom_point(data=traps12, aes(x=x+250, y=y), shape='plus')+
+  geom_point(data=traps12, aes(x=x+250, y=y), col='red', shape='plus')+
   geom_point(data=traps13, aes(x=x+600, y=y), shape='plus')+
-  geom_point(data=traps14, aes(x=x+1100, y=y), shape='plus')+
+  geom_point(data=traps14, aes(x=x+1100, y=y), col='red', shape='plus')+
   coord_fixed(ratio=1)+
   xlab('')+
   ylab('')+
   theme(axis.text.x = element_blank(), axis.text.y= element_blank(),
         axis.ticks.x = element_blank(), axis.ticks.y= element_blank())
 
+ggplot()+
+  geom_point(data=traps21, aes(x=x, y=y), shape='plus')+
+  geom_point(data=traps22, aes(x=x+450, y=y), col='red', shape='plus')+
+  geom_point(data=traps23, aes(x=x+1050, y=y), shape='plus')+
+  geom_point(data=traps24, aes(x=x+1800, y=y), col='red', shape='plus')+
+  coord_fixed(ratio=1)+
+  xlab('')+
+  ylab('')+
+  theme(axis.text.x = element_blank(), axis.text.y= element_blank(),
+        axis.ticks.x = element_blank(), axis.ticks.y= element_blank())
+
+ggplot()+
+  geom_point(data=traps31, aes(x=x, y=y), shape='plus')+
+  geom_point(data=traps32, aes(x=x+500, y=y), col='red', shape='plus')+
+  geom_point(data=traps33, aes(x=x+1000, y=y), shape='plus')+
+  geom_point(data=traps34, aes(x=x+1500, y=y), col='red', shape='plus')+
+  coord_fixed(ratio=1)+
+  xlab('')+
+  ylab('')+
+  theme(axis.text.x = element_blank(), axis.text.y= element_blank(),
+        axis.ticks.x = element_blank(), axis.ticks.y= element_blank())
+
+ggplot()+
+  geom_point(data=traps41, aes(x=x, y=y), shape='plus')+
+  geom_point(data=traps42, aes(x=x+500, y=y), col='red', shape='plus')+
+  geom_point(data=traps43, aes(x=x+1200, y=y), shape='plus')+
+  geom_point(data=traps44, aes(x=x+2000, y=y), col='red', shape='plus')+
+  coord_fixed(ratio=1)+
+  xlab('')+
+  ylab('')+
+  theme(axis.text.x = element_blank(), axis.text.y= element_blank(),
+        axis.ticks.x = element_blank(), axis.ticks.y= element_blank())
 
 stats1<-select.stats(results, parameter = 'D', statistics = c('estimate', 'lcl','ucl'))
 par(mfrow=c(2,2))
