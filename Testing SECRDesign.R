@@ -46,6 +46,7 @@ f<-cbind(Spacing, e)
 g<-cbind(Layout, f)
 g
 
+
 ggplot(data=g)+
   geom_point(aes(y=RMSE, x=Spacing, col=Layout, shape=Layout))
 
