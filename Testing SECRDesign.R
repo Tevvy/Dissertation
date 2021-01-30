@@ -29,7 +29,8 @@ trapset<-list(traps11, traps12, traps13, traps14,
 
 scenario1<-make.scenarios(trapsindex=c(1:16),noccasions = 1, D=20, g0=0.5, sigma=100, detectfn = 'HN')
 
-results<-run.scenarios(scenarios = scenario1, nrepl = 100, trapset=trapset, ncores=11, byscenario = FALSE, fit=TRUE)
+results<-run.scenarios(scenarios = scenario1, nrepl = 1000, trapset=trapset, ncores=11, byscenario = FALSE, fit=TRUE, seed=123)
+save(results, file='resultsFinal.rda')
 
 a<-select.stats(results, parameter = 'D', statistics=c('ERR'))
 b<-t(as.data.frame(summary(a, fields=c('rms'))$OUTPUT))
