@@ -62,6 +62,17 @@ ggplot(data=g)+
 
 ggplot()+
   geom_point(data=traps11, aes(x=x, y=y), shape='plus')+
+  geom_point(data=traps21, aes(x=x+450, y=y+150), col='red', shape='plus')+
+  geom_point(data=traps31, aes(x=x+700, y=y), shape='plus')+
+  geom_point(data=traps41, aes(x=x+800, y=y), col='red', shape='plus')+
+  coord_fixed(ratio=1)+
+  xlab('')+
+  ylab('')+
+  theme(axis.text.x = element_blank(), axis.text.y= element_blank(),
+        axis.ticks.x = element_blank(), axis.ticks.y= element_blank())
+
+ggplot()+
+  geom_point(data=traps11, aes(x=x, y=y), shape='plus')+
   geom_point(data=traps12, aes(x=x+250, y=y), col='red', shape='plus')+
   geom_point(data=traps13, aes(x=x+600, y=y), shape='plus')+
   geom_point(data=traps14, aes(x=x+1100, y=y), col='red', shape='plus')+
