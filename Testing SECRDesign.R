@@ -45,7 +45,6 @@ Layout<-c(rep('Grid', 4), rep('Circle', 4), rep('Line', 4), rep('Axis', 4))
 Layout<-as.data.frame(Layout)
 f<-cbind(Layout,Spacing, e)
 
-
 ggplot(data=f)+
   geom_point(aes(y=RMSE, x=Spacing, col=Layout, shape=Layout))
 
