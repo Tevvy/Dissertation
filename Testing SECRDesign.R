@@ -43,21 +43,19 @@ rownames(e)<-NULL
 Spacing<-c(1,1.5,2,2.5)
 Layout<-c(rep('Grid', 4), rep('Circle', 4), rep('Line', 4), rep('Axis', 4))
 Layout<-as.data.frame(Layout)
-f<-cbind(Spacing, e)
-g<-cbind(Layout, f)
-g
+f<-cbind(Layout,Spacing, e)
 
 
-ggplot(data=g)+
+ggplot(data=f)+
   geom_point(aes(y=RMSE, x=Spacing, col=Layout, shape=Layout))
 
-ggplot(data=g)+
+ggplot(data=f)+
   geom_point(aes(y=COV, x=Spacing, col=Layout, shape=Layout))
 
-ggplot(data=g)+
+ggplot(data=f)+
   geom_point(aes(y=mRB, x=Spacing, col=Layout, shape=Layout))
 
-ggplot(data=g)+
+ggplot(data=f)+
   geom_point(aes(y=mRSE, x=Spacing, col=Layout, shape=Layout))
 
 ggplot()+
@@ -116,6 +114,6 @@ ggplot()+
         axis.ticks.x = element_blank(), axis.ticks.y= element_blank())
 
 stats1<-select.stats(results, parameter = 'D', statistics = c('estimate', 'lcl','ucl'))
-par(mfrow=c(2,2))
+par(mfrow=c(4,4))
 plot(stats1, type='CI')
 plot(stats1, type='hist', statistic='estimate')
