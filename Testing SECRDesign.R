@@ -57,7 +57,7 @@ ggplot(data=f)+
 ggplot(data=f)+
   geom_point(aes(y=mRSE, x=Spacing, col=Layout, shape=Layout), size=3)
 
-ggplot()+
+ggplot(size)+
   geom_point(data=traps11, aes(x=x, y=y), shape='plus')+
   geom_point(data=traps21, aes(x=x+450, y=y+150), col='red', shape='plus')+
   geom_point(data=traps31, aes(x=x+700, y=y), shape='plus')+
@@ -116,3 +116,4 @@ stats1<-select.stats(results, parameter = 'D', statistics = c('estimate', 'lcl',
 par(mfrow=c(4,4))
 plot(stats1, type='CI')
 plot(stats1, type='hist', statistic='estimate')
+title(main='Coverage')
