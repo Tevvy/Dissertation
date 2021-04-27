@@ -46,16 +46,16 @@ Layout<-as.data.frame(Layout)
 f<-cbind(Layout,Spacing, e)
 
 ggplot(data=f)+
-  geom_point(aes(y=RMSE, x=Spacing, col=Layout, shape=Layout))
+  geom_point(aes(y=RMSE, x=Spacing, col=Layout, shape=Layout), size=3)
 
 ggplot(data=f)+
-  geom_point(aes(y=COV, x=Spacing, col=Layout, shape=Layout))
+  geom_point(aes(y=COV, x=Spacing, col=Layout, shape=Layout), size=3)
 
 ggplot(data=f)+
-  geom_point(aes(y=mRB, x=Spacing, col=Layout, shape=Layout))
+  geom_point(aes(y=mRB, x=Spacing, col=Layout, shape=Layout), size=3)
 
 ggplot(data=f)+
-  geom_point(aes(y=mRSE, x=Spacing, col=Layout, shape=Layout))
+  geom_point(aes(y=mRSE, x=Spacing, col=Layout, shape=Layout), size=3)
 
 ggplot()+
   geom_point(data=traps11, aes(x=x, y=y), shape='plus')+
