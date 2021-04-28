@@ -1,6 +1,7 @@
 library(secr)
 library(secrdesign)
 library(tidyverse)
+library(e1071)
 
 traps11<-make.grid(nx=3, ny=3, spacing=100, detector='proximity')
 traps12<-make.grid(nx=3, ny=3, spacing=150, detector='proximity')
@@ -119,5 +120,29 @@ ggplot()+
 stats1<-select.stats(results, parameter = 'D', statistics = c('estimate', 'lcl','ucl'))
 par(mfrow=c(4,4))
 plot(stats1, type='CI')
-plot(stats1, type='hist', statistic='estimate')
-title(main='Coverage')
+stats2<-select.stats(results, parameter = 'D', statistics = c('estimate'))
+plot(stats2, type='hist', statistic='estimate')
+DensityEstimates<-stats2$output
+
+Skewnessdf<-data.frame(Layout=c(rep('Grid', 4), rep('Circle', 4), rep('Line', 4), rep('Axis', 4)), 
+                       Spacing=c(1, 1.5, 2, 2.5),
+                       Skewness=rep(NA, 16))
+
+Skewnessdf$Skewness[1]<-skewness(as.vector(DensityEstimates$'1'))
+Skewnessdf$Skewness[2]<-skewness(as.vector(DensityEstimates$'2'))
+Skewnessdf$Skewness[3]<-skewness(as.vector(DensityEstimates$'3'))
+Skewnessdf$Skewness[4]<-skewness(as.vector(DensityEstimates$'4'))
+Skewnessdf$Skewness[5]<-skewness(as.vector(DensityEstimates$'5'))
+Skewnessdf$Skewness[6]<-skewness(as.vector(DensityEstimates$'6'))
+Skewnessdf$Skewness[7]<-skewness(as.vector(DensityEstimates$'7'))
+Skewnessdf$Skewness[8]<-skewness(as.vector(DensityEstimates$'8'))
+Skewnessdf$Skewness[9]<-skewness(as.vector(DensityEstimates$'9'))
+Skewnessdf$Skewness[10]<-skewness(as.vector(DensityEstimates$'10'))
+Skewnessdf$Skewness[11]<-skewness(as.vector(DensityEstimates$'11'))
+Skewnessdf$Skewness[12]<-skewness(as.vector(DensityEstimates$'12'))
+Skewnessdf$Skewness[13]<-skewness(as.vector(DensityEstimates$'13'))
+Skewnessdf$Skewness[14]<-skewness(as.vector(DensityEstimates$'14'))
+Skewnessdf$Skewness[15]<-skewness(as.vector(DensityEstimates$'15'))
+Skewnessdf$Skewness[16]<-skewness(as.vector(DensityEstimates$'16'))
+
+write.csv(Skewnessdf, file='Skewnessdf.csv')
